@@ -2,7 +2,7 @@ package Algorithms2;
 
 import java.util.Arrays;
 
-public class weightedGraphs {
+public class C_3_WeightedGraphs {
     //O(n^3) | Floyd Warshall algorithm
     public static void pathsMatrix(int[][] neighborMatrix) {
         int[][] pathMatrix = neighborMatrix;
@@ -83,7 +83,7 @@ public class weightedGraphs {
     }
 
     public static void main(String[] args) {
-////        Matrix with weight on the edges
+//        Matrix with weight on the edges
 //        int mat[][] = {{0, 4, Integer.MAX_VALUE, 3},
 //                {4, 0, 15, Integer.MAX_VALUE},
 //                {Integer.MAX_VALUE, 15, 0, 1},
@@ -109,10 +109,10 @@ public class weightedGraphs {
 //            System.out.printf(Arrays.toString(mat2[i]) + '\n');
 //        }
 
-        int mat3[][] = {{-4,4,2},
-                        {-8,-4,2},
-                        {-10,-6,-4}};
-        System.out.println(negativeCycle(mat3));
+//        int mat3[][] = {{-4,4,2},
+//                        {-8,-4,2},
+//                        {-10,-6,-4}};
+//        System.out.println(negativeCycle(mat3));
 
         //         4
         //    V0---→--V1
@@ -121,15 +121,15 @@ public class weightedGraphs {
         //	    |__←__|
         //     V3  1  V2
         //
-        int[][] arr = {{0,4,Integer.MAX_VALUE,Integer.MAX_VALUE},
-                {Integer.MAX_VALUE,0,-9,Integer.MAX_VALUE},
-                {Integer.MAX_VALUE,Integer.MAX_VALUE,0,1},
-                {3,Integer.MAX_VALUE,Integer.MAX_VALUE,0}};
-
-        pathsMatrix(arr);
-        for (int i = 0; i < arr.length; i++) {
-            System.out.printf(Arrays.toString(arr[i]) + '\n');
-        }
+//        int[][] arr = {{0,4,Integer.MAX_VALUE,Integer.MAX_VALUE},
+//                {Integer.MAX_VALUE,0,-9,Integer.MAX_VALUE},
+//                {Integer.MAX_VALUE,Integer.MAX_VALUE,0,1},
+//                {3,Integer.MAX_VALUE,Integer.MAX_VALUE,0}};
+//
+//        pathsMatrix(arr);
+//        for (int i = 0; i < arr.length; i++) {
+//            System.out.printf(Arrays.toString(arr[i]) + '\n');
+//        }
 
     }
 }

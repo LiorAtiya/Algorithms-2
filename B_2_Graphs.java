@@ -1,8 +1,9 @@
 package Algorithms2;
 
+import java.util.Arrays;
 import java.util.HashMap;
 
-public class Graphs {
+public class B_2_Graphs {
     //O(n^3) | Floyd Warshall algorithm
     public static void pathsMatrix(int[][] neighborMatrix) {
         int[][] pathMatrix = neighborMatrix;
@@ -66,7 +67,7 @@ public class Graphs {
             for (int j = 0; j < pathMatrix.length; j++) {
                 if (neighborMatrix[i][j] == 1 && i != j) {
                     pathMatrix[i][j] = i + "->" + j;
-                } else if(i != j){
+                } else if (i != j) {
                     pathMatrix[i][j] = "";
                 }
             }
@@ -76,11 +77,9 @@ public class Graphs {
         for (int k = 0; k < pathMatrix.length; k++) {
             for (int i = 0; i < pathMatrix.length; i++) {
                 for (int j = 0; j < pathMatrix.length; j++) {
-                    if(i != j) {
-                        if ((neighborMatrix[i][k] == 1 && neighborMatrix[k][j] == 1) && neighborMatrix[i][j] != 1) {
-                            pathMatrix[i][j] += pathMatrix[i][k] + "->" + pathMatrix[k][j].substring(3);
-                            neighborMatrix[i][j] = 1;
-                        }
+                    if ((i != j) && (neighborMatrix[i][k] == 1 && neighborMatrix[k][j] == 1) && neighborMatrix[i][j] != 1) {
+                        pathMatrix[i][j] += pathMatrix[i][k] + "->" + pathMatrix[k][j].substring(3);
+                        neighborMatrix[i][j] = 1;
                     }
                 }
             }
@@ -89,29 +88,28 @@ public class Graphs {
         return pathMatrix;
     }
 
-    public static String BottlesPaths(int srcX, int srcY, int desX, int desY, String[][] pathMatrix, int bigBottle){
-        int kSrc = (bigBottle + 1)*srcX + srcY;
-        int kDes = (bigBottle + 1)*desX + desY;
+    public static String BottlesPaths(int srcX, int srcY, int desX, int desY, String[][] pathMatrix, int bigBottle) {
+        int kSrc = (bigBottle + 1) * srcX + srcY;
+        int kDes = (bigBottle + 1) * desX + desY;
 
-        if(pathMatrix[kSrc][kDes] == "") return "No path";
+        if (pathMatrix[kSrc][kDes] == "") return "No path";
 
         String bottlePath = "";
         String verticesPath = pathMatrix[kSrc][kDes];
-        for(int i=0 ; i < verticesPath.length() ; i++){
-            if(verticesPath.charAt(i) != '-' && verticesPath.charAt(i) != '>'){
+        for (int i = 0; i < verticesPath.length(); i++) {
+            if (verticesPath.charAt(i) != '-' && verticesPath.charAt(i) != '>') {
                 String number = "";
-                while(i < verticesPath.length() && verticesPath.charAt(i) != '-'){
+                while (i < verticesPath.length() && verticesPath.charAt(i) != '-') {
                     number += verticesPath.charAt(i);
                     i++;
                 }
-                int leftBottle = Integer.parseInt(number+"") / (bigBottle + 1);
-                int rightBottle = Integer.parseInt(number+"") % (bigBottle + 1);
+                int leftBottle = Integer.parseInt(number + "") / (bigBottle + 1);
+                int rightBottle = Integer.parseInt(number + "") % (bigBottle + 1);
                 bottlePath += "[" + leftBottle + "," + rightBottle + "] => ";
             }
         }
 
-        bottlePath = bottlePath.substring(0,bottlePath.length()-3);
-
+        bottlePath = bottlePath.substring(0, bottlePath.length() - 3);
         return bottlePath;
     }
 
@@ -124,58 +122,58 @@ public class Graphs {
                 {0, 0, 0, 1, 0, 1, 0},
                 {0, 0, 0, 0, 1, 0, 1},
                 {0, 0, 0, 1, 0, 1, 0}};
-////
+//
         String[][] matStringPaths = stringPathsMatrix(matNeibhoor);
-//        for (int i = 0; i < matStringPaths.length; i++) {
-//            System.out.println(Arrays.toString(matStringPaths[i]));
-//        }
-////
-//        System.out.println("\n-----------------------------------------------\n");
-////
-////              0---1
-////             /     \
-////            5       2
-////             \     /
-////              4---3
-//        int[][] matPaths3 = {{1,1,0,0,0,1},
-//                             {1,1,1,0,0,0},
-//                             {0,1,1,1,0,0},
-//                             {0,0,1,1,1,0},
-//                             {0,0,0,1,1,1},
-//                             {1,0,0,0,1,1}};
+        for (int i = 0; i < matStringPaths.length; i++) {
+            System.out.println(Arrays.toString(matStringPaths[i]));
+        }
 //
-//        matStringPaths = stringPathsMatrix(matPaths3);
-//        for(int i=0 ; i < matStringPaths.length ; i++){
-//            System.out.println(Arrays.toString(matStringPaths[i]));
-//        }
+        System.out.println("\n-----------------------------------------------\n");
+////
+//              0---1
+//             /     \
+//            5       2
+//             \     /
+//              4---3
+        int[][] matPaths3 = {{1,1,0,0,0,1},
+                             {1,1,1,0,0,0},
+                             {0,1,1,1,0,0},
+                             {0,0,1,1,1,0},
+                             {0,0,0,1,1,1},
+                             {1,0,0,0,1,1}};
+
+        matStringPaths = stringPathsMatrix(matPaths3);
+        for(int i=0 ; i < matStringPaths.length ; i++){
+            System.out.println(Arrays.toString(matStringPaths[i]));
+        }
 //
-//        System.out.println("\n-----------------------------------------------\n");
+        System.out.println("\n-----------------------------------------------\n");
 
         //After Algorithm Floyd-Warshall
-//        pathsMatrix(matNeibhoor);
+        pathsMatrix(matNeibhoor);
 
-//        //After Algorithm Floyd-Warshall
-//        int[][] matPaths = {{1,0,0,1,0,1,0},
-//                            {0,1,1,0,1,0,1},
-//                            {0,1,1,0,1,0,1},
-//                            {1,0,0,1,0,1,0},
-//                            {0,1,1,0,1,0,1},
-//                            {1,0,0,1,0,1,0},
-//                            {0,1,1,0,1,0,1}};
-//
-//        //After Algorithm Floyd-Warshall
-//        int[][] matPaths2 = {{1,0,0},
-//                            {0,1,0},
-//                            {0,0,1}};
+        //After Algorithm Floyd-Warshall
+        int[][] matPaths = {{1,0,0,1,0,1,0},
+                            {0,1,1,0,1,0,1},
+                            {0,1,1,0,1,0,1},
+                            {1,0,0,1,0,1,0},
+                            {0,1,1,0,1,0,1},
+                            {1,0,0,1,0,1,0},
+                            {0,1,1,0,1,0,1}};
 
-//        System.out.println(numOfConnectedComponent(matNeibhoor));
+        //After Algorithm Floyd-Warshall
+        int[][] matPaths2 = {{1,0,0},
+                            {0,1,0},
+                            {0,0,1}};
 
-//        //Print matrix - have path
-//        for (int i = 0; i < matNeibhoor.length; i++) {
-//            System.out.println(Arrays.toString(matNeibhoor[i]));
-//        }
+        System.out.println(numOfConnectedComponent(matNeibhoor));
 
-        int matrix[][] = BottlesProblem.optionsOfOneAction(1,4);
+        //Print matrix - have path
+        for (int i = 0; i < matNeibhoor.length; i++) {
+            System.out.println(Arrays.toString(matNeibhoor[i]));
+        }
+
+        int matrix[][] = A_1_BottlesProblem.optionsOfOneAction(1,4);
 //        System.out.println("\n----Neighbor matrix-----\n");
 //        for(int i=0 ; i < matrix.length ; i++){
 //            System.out.println(Arrays.toString(matrix[i]));

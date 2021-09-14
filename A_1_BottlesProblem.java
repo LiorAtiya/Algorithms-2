@@ -2,7 +2,7 @@ package Algorithms2;
 
 import java.util.Arrays;
 
-public class BottlesProblem {
+public class A_1_BottlesProblem {
 
     //calculation for convert from matrix to array
     private static int indexRow(int i, int j, int n){
